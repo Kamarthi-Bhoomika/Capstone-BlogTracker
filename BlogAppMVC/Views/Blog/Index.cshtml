@@ -1,0 +1,48 @@
+﻿@model IEnumerable<BlogAppMVC.Models.BlogInfo>
+
+@{
+    ViewBag.Title = "Index";
+}
+
+<h2>List Of Blog</h2>
+
+<p>
+    @Html.ActionLink("Create New", "Create", null, new { @class = "btn btn-success" })
+</p>
+
+<div class="blog-container">
+    @foreach (var item in Model)
+    {
+        <div class="blog-item">
+            <h3 style="display: inline;">@Html.DisplayFor(modelItem => item.Title)</h3>
+            <span><h5> by </h5></span>
+            <p style="display: inline;"><h5>@Html.DisplayFor(modelItem => item.EmpEmailId)</h5></p>
+            <p>Date : <span style="display: inline;">@Html.DisplayFor(modelItem => item.DateOfCreation)</span></p>
+            <p>Subject : <span style="display: inline;">@Html.DisplayFor(modelItem => item.Subject)</span></p>
+            <p>
+                <a href="@item.BlogUrl" class="btn btn-primary" target="_blank">View Blog</a>
+                @Html.ActionLink("Edit", "Edit", new { id = item.BlogId }, new { @class = "btn btn-info" })
+                @Html.ActionLink("Delete", "Delete", new { id = item.BlogId }, new { @class = "btn btn-danger" })
+            </p>
+        </div>
+    }
+</div>
+
+<style>
+    .blog-container {
+        padding: 20px;
+        margin: 20px;
+        background-color: none;
+        display: flex;
+        flex-wrap: wrap;
+    }
+
+    .blog-item {
+        border: 1px solid #ccc;
+        padding: 10px;
+        margin: 10px;
+        background-color: #fff;
+        width: calc(50% - 20px);
+        box-sizing: border-box;
+    }
+</style>
